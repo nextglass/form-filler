@@ -17,10 +17,16 @@ class FormFiller {
   fillAllInputs() {
     jQuery('input:enabled:not([readonly])').each((index, element) => {
       this.dataGenerator.fillInputTagElement(element);
+
+      const event = new Event('input', { bubbles: true });
+      element.dispatchEvent(event);
     });
 
     jQuery('textarea:enabled:not([readonly])').each((index, element) => {
       this.dataGenerator.fillTextAreaTagElement(element);
+
+      const event = new Event('input', { bubbles: true });
+      element.dispatchEvent(event);
     });
 
     jQuery('select:enabled:not([readonly])').each((index, element) => {
@@ -32,6 +38,9 @@ class FormFiller {
         // eslint-disable-next-line no-param-reassign
         element.textContent = this.dataGenerator.generateParagraph(5, 100);
       }
+
+      const event = new Event('input', { bubbles: true });
+      element.dispatchEvent(event);
     });
   }
 
